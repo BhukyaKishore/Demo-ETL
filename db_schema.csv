@@ -1,0 +1,37 @@
+dbms,TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,ORDINAL_POSITION,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,CONSTRAINT_TYPE,REFERENCED_TABLE_SCHEMA,REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME
+mysql,mydb2,albums,id,2,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,mydb2,albums,title,3,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,albums,userId,1,int,NULL,"FOREIGN KEY",mydb2,users,id
+mysql,mydb2,comments,body,5,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,comments,email,4,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,comments,id,2,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,mydb2,comments,name,3,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,comments,postId,1,int,NULL,"FOREIGN KEY",mydb2,posts,id
+mysql,mydb2,photos,albumId,1,int,NULL,"FOREIGN KEY",mydb2,albums,id
+mysql,mydb2,photos,id,2,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,mydb2,photos,thumbnailUrl,5,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,photos,title,3,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,photos,url,4,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,posts,body,4,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,posts,id,2,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,mydb2,posts,title,3,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,posts,userId,1,int,NULL,"FOREIGN KEY",mydb2,users,id
+mysql,mydb2,todos,completed,4,tinyint,NULL,NULL,NULL,NULL,NULL
+mysql,mydb2,todos,id,2,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,mydb2,todos,title,3,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,todos,userId,1,int,NULL,"FOREIGN KEY",mydb2,users,id
+mysql,mydb2,users,address_city,9,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,address_geo_lat,11,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,address_geo_lng,12,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,address_street,7,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,address_suite,8,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,address_zipcode,10,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,company_bs,15,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,company_catchPhrase,14,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,company_name,13,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,email,4,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,id,1,int,NULL,"PRIMARY KEY",NULL,NULL,NULL
+mysql,mydb2,users,name,2,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,phone,5,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,username,3,varchar,600,NULL,NULL,NULL,NULL
+mysql,mydb2,users,website,6,varchar,600,NULL,NULL,NULL,NULL
