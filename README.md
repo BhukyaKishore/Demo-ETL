@@ -1,6 +1,6 @@
 # Database Population Script Documentation
 
-This script is designed to fetch data from a JSON API (specifically, JSONPlaceholder) and populate a MySQL database with the retrieved information. It dynamically creates tables based on the JSON structure and inserts data, handling potential duplicate entries and setting up primary and foreign key constraints.
+This script is designed to fetch data from a JSON API frim ( JSONPlaceholder) and populate a MySQL database with the retrieved information. It dynamically creates tables based on the JSON structure and inserts data, handling potential duplicate entries and setting up primary and foreign key constraints.
 
 ## Table of Contents
 1.  [Prerequisites](#prerequisites)
@@ -18,7 +18,7 @@ This script is designed to fetch data from a JSON API (specifically, JSONPlaceho
 ## Prerequisites
 Before running this script, ensure you have the following:
 *   **Python 3.x** installed.
-*   **MySQL Server** running and accessible. The script assumes `localhost` as the host, `root` as the user, and `@BBkishore3921` as the password. **You should change these credentials to match your MySQL setup.**
+*   **MySQL Server** running and accessible. The script assumes `localhost` as the host, `root` as the user, and `admin` as the password. **You should change these credentials to match your MySQL setup.**
 *   The following Python libraries installed:
     *   `requests`
     *   `pandas`
@@ -31,7 +31,7 @@ pip install requests pandas mysql-connector-python
 
 ## Script Overview
 The script performs the following main tasks:
-1.  Establishes a connection to a MySQL database (`mydb2`). If `mydb2` does not exist, it will be created.
+1.  Establishes a connection to a MySQL database (`mydb`). If `mydb` does not exist, it will be created.
 2.  Fetches data from a list of specified JSONPlaceholder API endpoints.
 3.  For each API endpoint, it dynamically creates a corresponding table in the database, inferring column names and data types from the JSON structure.
 4.  Inserts the fetched data into the newly created or existing tables, using `INSERT IGNORE` to prevent errors from duplicate primary keys.
@@ -40,7 +40,7 @@ The script performs the following main tasks:
 ## Functions
 
 ### `db_connect()`
-Establishes a global connection to the MySQL database. It attempts to connect to `mydb2`. If the database does not exist, it creates it. If a connection already exists and is active, it reuses it. Errors during connection are logged to `error.txt` and the script exits.
+Establishes a global connection to the MySQL database. It attempts to connect to `mydb`. If the database does not exist, it creates it. If a connection already exists and is active, it reuses it. Errors during connection are logged to `error.txt` and the script exits.
 
 ### `db_close()`
 Closes the global database connection and cursor if they are open.
@@ -84,12 +84,12 @@ Closes the global database connection and cursor if they are open.
     *   Includes a `try...except...finally` block to ensure `db_close()` is always called.
 
 ## How to Use
-1.  **Save the script**: Save the provided Python code as `database_population.py` (or any other `.py` extension).
+1.  **Save the script**: Save the provided Python code as `main.py` (or any other `.py` extension).
 2.  **Install prerequisites**: Ensure all required Python libraries are installed (`requests`, `pandas`, `mysql-connector-python`).
 3.  **Configure MySQL**: Update the `host`, `user`, and `password` in the `db_connect()` function to match your MySQL server credentials.
 4.  **Run the script**: Execute the script from your terminal:
     ```bash
-    python database_population.py
+    python3 main.py
     ```
 
 ## Error Handling

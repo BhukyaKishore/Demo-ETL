@@ -1,4 +1,10 @@
-#importing modules
+'''
+date:23-09-2025
+author:Bhavani Kioshore
+project: Implementation of ETL using json placeholder
+'''
+
+#importing libraries
 import requests
 import pandas as pd
 import mysql.connector
@@ -6,11 +12,12 @@ import datetime
 import time
 
 
-
-flag=0
+#declariing global variables
 mydb = None
 mycursor = None
 
+
+#database connection
 def db_connect():
     global mydb, mycursor
     if mydb is None or not mydb.is_connected():
@@ -27,14 +34,14 @@ def db_connect():
             with open("error.txt", "a") as fs:
                 fs.write(f"{datetime.datetime.now()} Error in db_connect: {err} \n")
 
-#featching url
+#featching url and creating  tables
 def creating_table(url):
     try:
-       
         # creating table dynamically
         res = requests.get(url).json()
         df = pd.json_normalize(res)
         name=url[37:-1] #name from url
+        df.to_csv(f"{name}.csv",index=False) # creating csv files
         datatype=df.dtypes #featching datatype form data
         command=str(datatype).replace('\n',' ').replace('int64','int ,').replace('object','varchar(600),').replace('bool','tinyint ,').replace('address.','address_').replace('company.','company_').replace('geo.','geo_').strip()
         index=command.find('dtype')
@@ -46,7 +53,7 @@ def creating_table(url):
                 break
         #creating cursor for insering data
         mydb = mysql.connector.connect(
-            host="localhost",
+            host="localht",
             user="root",
             password="@BBkishore3921"
         )
@@ -59,6 +66,8 @@ def creating_table(url):
         with open("error.txt", "a") as fs:
             fs.write(f"{datetime.datetime.now()} Error in featch: {err} \n")
 
+
+#inserting data into tables
 def inserting_data(url):
     db_connect() # Ensure connection is active
     try:
@@ -93,9 +102,6 @@ def inserting_data(url):
     except Exception as err:
         with open("error.txt", "a") as fs:
             fs.write(f"{datetime.datetime.now()} Error in inserting_data for {url}: {err} \n")
-    except Exception as err:
-        with open("error.txt", "a") as fs:
-            fs.write(f"{datetime.datetime.now()} Error in featch: {err} \n")
 
 
 #adding constraints
@@ -139,16 +145,16 @@ try:
         link=base_link+x+'/'
         urls.append(link)
     for url in urls:
-        creating_table(url)
-    addding_constraints()
+        creating_table(url) #crating tables
+    addding_constraints() #adding constraints
     for url in urls:
-        inserting_data(url)
+        inserting_data(url) #inserting data into tables
 
-    
+    #automation runs for every hour
     while(True):
         for url in urls:
+            time.sleep(60*60) #waiting for 1 hour
             inserting_data(url)
-            time.sleep(60*60)
 
 except Exception as err:
         with open("error.txt", "a") as fs:
